@@ -60,6 +60,8 @@ const bookmarks = [
     }
 ];
 
+console.table(bookmarks)
+
 //affichage
 function displayBookmarks(list) {
     bookmarkList.innerHTML = "";
