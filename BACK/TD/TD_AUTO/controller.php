@@ -1,31 +1,19 @@
 <?php
 
-$table = $_GET["table"] ?? null;
-$data = [];
+$table = [];
 
-if ($table) {
-    $class = ucfirst($table);
-    if (class_exists($class)) {
-        $data = $class::all();
+$table = isset($_GET['table']) ? $_GET['table'] : 'vehicule'; //TODO : Faire en sorte qu'il récupère toutes les tables de la db
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+$class = ucfirst($table);
+
+var_dump($table);
+
+try {
+    if ($id) {
+        $data = $class::find($id);
     } else {
-        echo "Table inconnue.";
+        $data = $class::all();
     }
-} else {
-    echo "Paramètre 'table' manquant.";
+} catch (Exception $e) {
+    die("Error: " . $e->getMessage());
 }
-
-// Gestion d'erreurs avancée et chargement par ID
-/* $id = $_GET["id"] ?? null;
-
-if ($table) {
-    $class = ucfirst($table);
-    if (class_exists($class)) {
-        if ($id) {
-            $data = $class::find($id);  // Assurez-vous d'ajouter une méthode `find` dans `Model`
-        } else {
-            $data = $class::all();
-        }
-    }
-} */
-
-?>

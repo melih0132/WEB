@@ -18,6 +18,14 @@ class Human {
         }
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getGenre() {
+        return $this->genre;
+    }
+
     public function __set($property, $value) {
         if (property_exists($this, $property)) {
             $this->$property = $value;

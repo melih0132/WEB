@@ -34,7 +34,7 @@ class SuperHero extends Human {
         foreach ($superHeroes as $hero) {
             echo "<tr>";
             echo "<td>" . $hero->getName() . "</td>";
-            echo "<td>" . $hero->getGender() . "</td>";
+            echo "<td>" . $hero->getGenre() . "</td>";
             echo "<td>" . $hero->identity . "</td>";
             echo "<td>" . implode(", ", $hero->colors) . "</td>";
             echo "</tr>";

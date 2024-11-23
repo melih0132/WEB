@@ -1,15 +1,33 @@
-<?php
+<!DOCTYPE html>
+<html lang="fr">
 
-include_once "db.php";
-include_once "Vehicle.php";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD</title>
+</head>
 
-$v = Vehicle::load(1); // Charger un véhicule avec l'ID 1
-echo "Prix initial : " . $v->price . "<br>";
+<body>
+    <?php
 
-$v->price = 100000; // Modifier le prix et mettre à jour dans la base de données
-echo "Prix après modification : " . $v->price . "<br>";
+    include_once "Vehicule.php";
 
-$v = Vehicle::load(1); // Recharger pour vérifier la mise à jour
-echo "Prix après rechargement : " . $v->price;
+    try {
+        $v = Vehicule::load(1);
+        echo "Prix initial : " . $v->price . "\n";
+    
+        $v->price = 100000;
+        echo "Prix après modification : " . $v->price . "\n";
+    
+        $v = Vehicule::load(1);
+        echo "Prix après rechargement : " . $v->price . "\n";
+    
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
 
-?>
+    ?>
+
+</body>
+
+</html>

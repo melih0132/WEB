@@ -1,15 +1,4 @@
 <?php
 
-class DB {
-    private static $instance = null;
-
-    public static function getInstance() {
-        if (!self::$instance) {
-            self::$instance = new PDO("mysql:host=localhost;dbname=nom_bdd", "utilisateur", "mot_de_passe");
-            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        return self::$instance;
-    }
-}
-
-?>
+$db = new PDO("pgsql:host=srv-peda.iut-acy.local;dbname=db_php_vehicules;port=5433", "cetinkam", "7jhqDh");
+$db->query("SET search_path TO db_php_vehicules");
