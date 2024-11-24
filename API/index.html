@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - Citations</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Inclusion d'Axios -->
+</head>
+
+<body>
+    <h1>Récupérateur de Citation</h1>
+    <button id="get-quote">Obtenir une citation</button>
+    <p id="quote"></p>
+    <p id="author"></p>
+
+    <script>
+        async function fetchQuote() {
+            try {
+                console.log("Début de l'appel à l'API...");
+                const response = await axios.get('https://quote-garden.herokuapp.com/api/v3/quotes/random');
+                
+                const quote = response.data.data[0].quoteText;
+                const author = response.data.data[0].quoteAuthor || "Auteur inconnu";
+
+                document.getElementById('quote').innerText = `Citation : "${quote}"`;
+                document.getElementById('author').innerText = `Auteur : ${author}`;
+            } catch (error) {
+                console.error('Erreur lors de l\'appel API :', error.message);
+                document.getElementById('quote').innerText = "Impossible de récupérer une citation.";
+            }
+        }
+
+        document.getElementById('get-quote').addEventListener('click', fetchQuote);
+    </script>
+</body>
+
+</html>
